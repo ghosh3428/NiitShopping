@@ -13,8 +13,37 @@ public class FrontController
 	public ModelAndView index()
 	{
 		ModelAndView mav = new ModelAndView("page");
-		
-		mav.addObject("Message","Hello User!!! Welcome to Niit Shopping Website");
+		mav.addObject("title", "Home");
+		mav.addObject("ClickHome",true);
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/about")
+	public ModelAndView about()
+	{
+		ModelAndView mav = new ModelAndView("page");
+		mav.addObject("title", "About Us");
+		mav.addObject("ClickAbout",true);
+		return mav;
+	}
+	
+	@RequestMapping(value="/contact")
+	public ModelAndView contact()
+	{
+		ModelAndView mav = new ModelAndView("page");
+		mav.addObject("title", "Contact Us");
+		mav.addObject("ClickContact",true);
+		return mav;
+	}
+	
+	@RequestMapping(value="services")
+	public ModelAndView services()
+	{
+		ModelAndView mav = new ModelAndView("page");
+		mav.addObject("title", "Services");
+		mav.addObject("ClickServices",true);
+		return mav;
+	}
+	
 }
