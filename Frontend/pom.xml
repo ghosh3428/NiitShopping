@@ -43,7 +43,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<!-- JSTL -->
 
 		<dependency>
@@ -52,7 +52,13 @@
 			<version>1.2</version>
 		</dependency>
 
-
+		<!-- Backend Project -->
+		<dependency>
+			<groupId>com.niit</groupId>
+			<artifactId>Backend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 

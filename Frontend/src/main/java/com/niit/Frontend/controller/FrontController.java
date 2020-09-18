@@ -1,13 +1,20 @@
 package com.niit.Frontend.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.Backend.dao.CategoryDAO;
+
+
 
 @Controller
 public class FrontController 
 {
 
+	@Autowired
+	private CategoryDAO categoryDAO;
 	
 	@RequestMapping(value={"/","/home","/index"})
 	public ModelAndView index()
@@ -15,6 +22,7 @@ public class FrontController
 		ModelAndView mav = new ModelAndView("page");
 		mav.addObject("title", "Home");
 		mav.addObject("ClickHome",true);
+		mav.addObject("categories", categoryDAO.categoryList());
 		return mav;
 	}
 	
