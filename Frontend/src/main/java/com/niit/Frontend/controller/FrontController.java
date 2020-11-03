@@ -2,10 +2,13 @@ package com.niit.Frontend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.Backend.dao.CategoryDAO;
+import com.niit.Backend.dto.Category;
+import com.niit.Backend.dto.Product;
 
 
 
@@ -45,13 +48,32 @@ public class FrontController
 		return mav;
 	}
 	
-	@RequestMapping(value="services")
-	public ModelAndView services()
-	{
-		ModelAndView mav = new ModelAndView("page");
-		mav.addObject("title", "Services");
-		mav.addObject("ClickServices",true);
-		return mav;
-	}
+	@RequestMapping(value = "/show/all/products")
+	public ModelAndView showAllProducts() 
+	{		
+		ModelAndView mv = new ModelAndView("page");		
+		mv.addObject("title","All Products");
+		mv.addObject("categories", categoryDAO.categoryList());
+		mv.addObject("userClickAllProducts",true);
+		return mv;				
+	}	
+	
+	@RequestMapping(value = "/show/category/{id}/products")
+	public ModelAndView showCategoryProducts(@PathVariable("id") int id) 
+	{		
+		ModelAndView mv = new ModelAndView("page");
+		Category category = null;
+		category = categoryDAO.getCategory(id);
+		mv.addObject("title",category.getName());
+		mv.addObject("categories", categoryDAO.categoryList());
+		mv.addObject("category", category);
+		mv.addObject("userClickCategoryProducts",true);
+		return mv;				
+	}	
+	
+	
+
+	
+
 	
 }

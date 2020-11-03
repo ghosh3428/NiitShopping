@@ -4,9 +4,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<spring:url var="images" value="/rs/images" />
 <spring:url var="customcs" value="/rs/css" />
 <spring:url var="custumjs" value="/rs/js" />
-<spring:url var="jquery" value="/rs/vendor/jquery " />
+<spring:url var="jquery" value="/rs/vendor/jquery" />
 <spring:url var="bootcs" value="/rs/vendor/bootstrap/css" />
 <spring:url var="bootjs" value="/rs/vendor/bootstrap/js" />
 
@@ -27,8 +28,17 @@
 
 <title>Online Shopping - ${title}</title>
 
+<script>
+	window.menu = '${title}';
+	
+	window.contextRoot = '${contextRoot}';
+</script>
+
 <!-- Bootstrap core CSS -->
 <link href="${bootcs}/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap DataTable -->
+<link href="${customcs}/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="${customcs}/shop-homepage.css" rel="stylesheet">
@@ -55,17 +65,24 @@
 		<%@include file="about.jsp"%>
 	</c:if>
 
-	<!-- Services Content -->
-	<c:if test="${ClickServices == true }">
-		<%@include file="services.jsp"%>
+	<c:if
+		test="${userClickAllProducts == true  or  userClickCategoryProducts == true }">
+		<%@include file="listProducts.jsp"%>
 	</c:if>
 
 	<!-- Footer -->
 	<%@include file="./shared/footer.jsp"%>
 
-	<!-- Bootstrap core JavaScript -->
+	<!-- JQuery core JavaScript -->
 	<script src="${jquery}/jquery.min.js"></script>
-	<script src="${bootjs}/bootstrap.bundle.min.js"></script>
+	
+	<!-- Bootstrap core JavaScript -->
+	<script src="${bootjs}/bootstrap.min.js"></script>
+	
+	<!-- Bootstrap DataTable Plugin -->
+	<script src="${custumjs}/jquery.dataTables.js"></script>
+	
+	<!-- Custom JavaScript -->
 	<script src="${custumjs}/myscript.js"></script>
 </body>
 
