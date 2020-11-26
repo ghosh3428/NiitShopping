@@ -91,7 +91,7 @@ public class testProduct
 		
 	}
 	
-	*/
+	
 	@Test
 	public void testListActiveProducts() 
 	{
@@ -116,5 +116,23 @@ public class testProduct
 					3,productDAO.getLatestActiveProducts(3).size());
 			
 	} 
+	*/
 	
+	
+	@Test
+	public void testAddProduct()
+	{
+		product = new Product();
+		
+		product.setName("Sony Bravia X7002G");
+		product.setBrand("Sony");
+		product.setDescription("This is some description for Sony Bravia television!");
+		product.setUnitPrice(44999);
+		product.setActive(true);
+		product.setCategoryId(2);
+		product.setSupplierId(1);
+		
+		assertEquals("Something went wrong while inserting a new product!",
+				true,productDAO.addProduct(product));
+	}
 }

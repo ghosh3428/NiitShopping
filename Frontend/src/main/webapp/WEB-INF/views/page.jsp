@@ -30,15 +30,18 @@
 
 <script>
 	window.menu = '${title}';
-	
+
 	window.contextRoot = '${contextRoot}';
 </script>
 
 <!-- Bootstrap core CSS -->
 <link href="${bootcs}/bootstrap.min.css" rel="stylesheet">
 
+<link href="${customcs}/bootstrap.theme.css" rel="stylesheet">
+
 <!-- Bootstrap DataTable -->
 <link href="${customcs}/dataTables.bootstrap.css" rel="stylesheet">
+
 
 <!-- Custom styles for this template -->
 <link href="${customcs}/shop-homepage.css" rel="stylesheet">
@@ -46,44 +49,58 @@
 </head>
 
 <body>
+	<div class="wrapper">
 
-	<!-- Navigation -->
-	<%@include file="./shared/nav.jsp"%>
+		<!-- Navigation -->
+		<%@include file="./shared/nav.jsp"%>
 
-	<!-- Home Content -->
-	<c:if test="${ClickHome == true }">
-		<%@include file="home.jsp"%>
-	</c:if>
+		<div class="content">
+			<!-- Home Content -->
+			<c:if test="${ClickHome == true }">
+				<%@include file="home.jsp"%>
+			</c:if>
 
-	<!-- Contact Us Content -->
-	<c:if test="${ClickContact == true }">
-		<%@include file="contact.jsp"%>
-	</c:if>
+			<!-- Contact Us Content -->
+			<c:if test="${ClickContact == true }">
+				<%@include file="contact.jsp"%>
+			</c:if>
 
-	<!-- About Us Content -->
-	<c:if test="${ClickAbout == true }">
-		<%@include file="about.jsp"%>
-	</c:if>
+			<!-- About Us Content -->
+			<c:if test="${ClickAbout == true }">
+				<%@include file="about.jsp"%>
+			</c:if>
 
-	<c:if
-		test="${userClickAllProducts == true  or  userClickCategoryProducts == true }">
-		<%@include file="listProducts.jsp"%>
-	</c:if>
+			<c:if
+				test="${userClickAllProducts == true  or  userClickCategoryProducts == true }">
+				<%@include file="listProducts.jsp"%>
+			</c:if>
 
-	<!-- Footer -->
-	<%@include file="./shared/footer.jsp"%>
+			<c:if test="${userClickSingleProduct == true  }">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>
 
-	<!-- JQuery core JavaScript -->
-	<script src="${jquery}/jquery.min.js"></script>
-	
-	<!-- Bootstrap core JavaScript -->
-	<script src="${bootjs}/bootstrap.min.js"></script>
-	
-	<!-- Bootstrap DataTable Plugin -->
-	<script src="${custumjs}/jquery.dataTables.js"></script>
-	
-	<!-- Custom JavaScript -->
-	<script src="${custumjs}/myscript.js"></script>
+			<c:if test="${userClickManageProduct == true  }">
+				<%@include file="manageProduct.jsp"%>
+			</c:if>
+
+		</div>
+		<!-- Footer -->
+		<%@include file="./shared/footer.jsp"%>
+
+		<!-- JQuery core JavaScript -->
+		<script src="${jquery}/jquery.min.js"></script>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="${bootjs}/bootstrap.min.js"></script>
+
+
+		<!-- Bootstrap DataTable Plugin -->
+		<script src="${custumjs}/jquery.dataTables.js"></script>
+
+				<!-- Custom JavaScript -->
+		<script src="${custumjs}/myscript.js"></script>
+
+	</div>
 </body>
 
 </html>

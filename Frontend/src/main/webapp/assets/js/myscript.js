@@ -11,6 +11,9 @@ $(function() {
 	case 'All Products':
 		$('#listProducts').addClass('active');
 		break;
+	case 'Manage Product':
+		$('#manageProducts').addClass('active');
+		break;
 	default:
 		if (menu == "Home")
 			break;
@@ -64,8 +67,20 @@ $(function() {
 						mRender : function(data, type, row) {
 							return '&#8377; ' + data
 						}
-					}, {
+					}, 
+					{
 						data : 'quantity',
+						mRender : function(data, type, row) 
+						{
+
+							if (data < 1) 
+							{
+								return '<span style="color:red">Out of Stock!</span>';
+							}
+
+							return data;
+
+						}
 					},
 					{
 						data : 'id',
@@ -74,8 +89,8 @@ $(function() {
 						{
 
 							var str = '';
-							str += '<a href="' + window.contextRoot+ '/show/'+ data+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
-							str += '<a href="' + window.contextRoot+ '/cart/add/'+ data+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+							str += '<a href="' + window.contextRoot+ '/show/'+ data+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span>View Details</a> &#160;';
+							str += '<a href="' + window.contextRoot+ '/cart/add/'+ data+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a>';
 							
 							
 							return str;

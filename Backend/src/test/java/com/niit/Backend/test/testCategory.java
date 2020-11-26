@@ -31,16 +31,17 @@ public class testCategory
 		
 	}
 	
-	/*
+	
 	@Test
 	public void testInsert()
 	{
 		category = new Category();
-		category.setName("Tv");
-		category.setDesc("This is a sample Tv category");
-		category.setImageurl("Cat_2.png");
+		category.setName("Music System");
+		category.setDesc("This is a sample music System category");
+		category.setImageurl("Cat_4.png");
 		assertEquals("Error inserting a new row into the category Table",true,categoryDAO.insert(category));
-		
+	}
+	/*
 		category = new Category();
 		category.setName("Laptop");
 		category.setDesc("This is a sample Laptop category");
@@ -88,7 +89,7 @@ public class testCategory
 		assertEquals("Error updating a records in the category Table",true,categoryDAO.delete(category));
 		
 	}
-	*/
+	
 	
 	@Test
 	public void testListCategory() 
@@ -97,6 +98,6 @@ public class testCategory
 		assertEquals("Error fetcheing the list of categories from the table!",3,categoryDAO.categoryList().size());
 		
 		
-	}
+	}*/
 
 }
