@@ -2,6 +2,7 @@ package com.niit.Frontend.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,6 +21,8 @@ import com.niit.Backend.dao.CategoryDAO;
 import com.niit.Backend.dao.ProductDAO;
 import com.niit.Backend.dto.Category;
 import com.niit.Backend.dto.Product;
+import com.niit.Frontend.util.FileUtil;
+import com.niit.Frontend.validator.ProductValidate;
 
 @Controller
 @RequestMapping("/manage")
@@ -70,8 +73,11 @@ public class ManageProductController
 	
 	
 	@RequestMapping(value = "/products", method=RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") Product newProduct,BindingResult results, Model model)
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product newProduct,BindingResult results, Model model, HttpServletRequest request)
 	{
+		
+		new ProductValidate().validate(newProduct,results);
+		
 		if(results.hasErrors()) 
 		{
 			
@@ -83,6 +89,10 @@ public class ManageProductController
 		
 		productDAO.addProduct(newProduct);
 		
+		if(!newProduct.getFile().getOriginalFilename().equals("") )
+		{
+			FileUtil.uploadFile(request, newProduct.getFile(), newProduct.getCode()); 
+		 }
 		logger.info(newProduct.toString());
 		logger.debug("Inside PageController index method - DEBUG");
 		

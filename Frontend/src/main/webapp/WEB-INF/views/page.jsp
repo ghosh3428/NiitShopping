@@ -44,7 +44,7 @@
 
 
 <!-- Custom styles for this template -->
-<link href="${customcs}/shop-homepage.css" rel="stylesheet">
+<link href="${customcs}/myStyle.css" rel="stylesheet">
 
 </head>
 
