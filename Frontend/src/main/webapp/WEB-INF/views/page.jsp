@@ -37,6 +37,7 @@
 <!-- Bootstrap core CSS -->
 <link href="${bootcs}/bootstrap.min.css" rel="stylesheet">
 
+
 <link href="${customcs}/bootstrap.theme.css" rel="stylesheet">
 
 <!-- Bootstrap DataTable -->
@@ -97,6 +98,9 @@
 		<!-- Bootstrap DataTable Plugin -->
 		<script src="${custumjs}/jquery.dataTables.js"></script>
 
+		<script src="${custumjs}/dataTables.bootstrap.js"></script>
+		<script src="${custumjs}/bootbox.min.js"></script>
+		
 				<!-- Custom JavaScript -->
 		<script src="${custumjs}/myscript.js"></script>
 

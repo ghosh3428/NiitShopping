@@ -123,5 +123,48 @@
 		</div>
 	</div>
 
+
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Available products</h1>
+		</div>
+		<div class="col-md-12">
+
+			<table id="adminProductsTable"
+				class="table table-condensed table-bordered">
+
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>&#160;</th>
+						<th>Name</th>
+						<th>Brand</th>
+						<th>Qty. Avail</th>
+						<th>Unit Price</th>
+						<th>Activate</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				
+		
+				
+				<tfoot>
+					<tr>
+						<th>Id</th>
+						<th>&#160;</th>
+						<th>Name</th>
+						<th>Brand</th>
+						<th>Qty. Avail</th>
+						<th>Unit Price</th>
+						<th>Activate</th>
+						<th>Edit</th>
+					</tr>
+				</tfoot>
+
+
+			</table>
+		</div>
+	</div>
+
 </div>
 
