@@ -225,9 +225,8 @@ $(function() {
 										{
 											if (confirmed) 
 											{
-												url: window.contextRoot + '/manage/product/'+checkbox.prop('value')+'/activation',
-												$.post(url , function(data)
-														{
+												var activeurl = window.contextRoot + '/manage/product/'+checkbox.prop('value')+'/activation';
+												$.post(activeurl , function(data){
 													bootbox.alert({
 														size : 'medium',
 														title : 'Information',

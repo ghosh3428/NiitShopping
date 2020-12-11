@@ -70,11 +70,13 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-form-label col-md-4"> Select Category </label>
+							<label class="col-form-label col-md-4" for="description">
+								Enter Product Description </label>
 							<div class="col-md-8">
-								<sf:select path="categoryId" id="category" items="${categories}"
-									itemLabel="name" itemValue="id" class="form-control">
-								</sf:select>
+								<sf:textarea path="description" id="description"
+									class="form-control" rows="5"
+									placeholder="Enter product description : " />
+								<sf:errors path="description" cssClass="help-block" element="em" />
 							</div>
 
 						</div>
@@ -88,15 +90,20 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-form-label col-md-4" for="description">
-								Enter Product Description </label>
+							<label class="col-form-label col-md-4"> Select Category </label>
 							<div class="col-md-8">
-								<sf:textarea path="description" id="description"
-									class="form-control" rows="5"
-									placeholder="Enter product description : " />
-								<sf:errors path="description" cssClass="help-block" element="em" />
+								<sf:select path="categoryId" id="category" items="${categories}"
+									itemLabel="name" itemValue="id" class="form-control">
+								</sf:select>
+								<c:if test="${product.id == 0}">
+									<br />
+									<div class="text-right">
+										<button type="button" data-toggle="modal"
+											data-target="#myCategoryModal" class="btn btn-warning btn-sm">ADD
+											CATEGORY</button>
+									</div>
+								</c:if>
 							</div>
-
 						</div>
 
 
@@ -111,7 +118,7 @@
 								<sf:hidden path="purchases" />
 								<sf:hidden path="views" />
 								<input type="submit" name="submit" id="submit" value="submit"
-									class="btn btn-primary" />
+									class="btn btn-primary btn-lg" />
 							</div>
 
 						</div>
@@ -145,9 +152,9 @@
 						<th>Edit</th>
 					</tr>
 				</thead>
-				
-		
-				
+
+
+
 				<tfoot>
 					<tr>
 						<th>Id</th>
@@ -165,6 +172,57 @@
 			</table>
 		</div>
 	</div>
+
+
+
+	<div class="modal fade" id="myCategoryModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">New Category</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+				</div>
+				<div class="modal-body">
+
+					<sf:form id="categoryForm" class="form-horizontal"
+						modelAttribute="category" action="${contextRoot}/manage/category"
+						method="POST">
+
+						<div class="form-group row">
+							<label class="control-label col-md-4">Name</label>
+							<div class="col-md-8 validate">
+								<sf:input type="text" path="name" class="form-control"
+									placeholder="Category Name" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="control-label col-md-4">Description</label>
+							<div class="col-md-8 validate">
+								<sf:textarea path="desc" class="form-control"
+									placeholder="Enter category description here!" />
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<div class="col-md-offset-4 col-md-4">
+								<input type="submit" name="submit" value="Save"
+									class="btn btn-primary" />
+							</div>
+						</div>
+					</sf:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 </div>
 

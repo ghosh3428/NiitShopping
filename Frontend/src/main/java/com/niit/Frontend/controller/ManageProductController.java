@@ -73,12 +73,28 @@ public class ManageProductController
 		return categoryDAO.categoryList();
 	}
 	
+
+	@ModelAttribute("category")
+	public Category modelCategory() {
+		return new Category();
+	}
+	
 	
 	@RequestMapping(value = "/products", method=RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product newProduct,BindingResult results, Model model, HttpServletRequest request)
 	{
+		if(newProduct.getId() == 0)
+		{
+			new ProductValidate().validate(newProduct,results);
+		}
+		else
+		{
+			if(!newProduct.getFile().getOriginalFilename().equals(""))
+			{
+				new ProductValidate().validate(newProduct,results);
+			}
+		}
 		
-		new ProductValidate().validate(newProduct,results);
 		
 		if(results.hasErrors()) 
 		{
@@ -89,7 +105,14 @@ public class ManageProductController
 			return "page";
 		}
 		
-		productDAO.addProduct(newProduct);
+		if(newProduct.getId() == 0)
+		{
+			productDAO.addProduct(newProduct);
+		}
+		else
+		{
+			productDAO.updateProduct(newProduct);
+		}
 		
 		if(!newProduct.getFile().getOriginalFilename().equals("") )
 		{
@@ -106,11 +129,37 @@ public class ManageProductController
 	
 	@RequestMapping(value = "/product/{id}/activation", method=RequestMethod.POST)
 	@ResponseBody
-	public String managePostProductActivation(@PathVariable int id) {		
+	public String handleProductAvtivation(@PathVariable int id)
+	{
 		Product product = productDAO.getProduct(id);
+		
 		boolean isActive = product.isActive();
+		
 		product.setActive(!isActive);
-		productDAO.updateProduct(product);		
-		return (isActive)? "Product Dectivated Successfully!": "Product Activated Successfully";
+		
+		productDAO.updateProduct(product);	
+		
+		
+		return (isActive)? 
+				"Successfully Deactivated the product with id : " +product.getId()
+				: "Successfully Activated the product with id : " +product.getId();
 	}
+	
+
+	
+	@RequestMapping(value = "/{id}/product", method=RequestMethod.GET)
+	public ModelAndView handleProductEdit(@PathVariable int id)
+	{
+		
+		ModelAndView mv = new ModelAndView("page");	
+		mv.addObject("title","Product Management");		
+		mv.addObject("userClickManageProduct",true);
+		
+		Product product = productDAO.getProduct(id);
+		
+		mv.addObject("product", product);
+		
+		return mv;
+	}
+	
 }
