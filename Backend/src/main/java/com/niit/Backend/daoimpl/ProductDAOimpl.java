@@ -38,7 +38,8 @@ public class ProductDAOimpl implements ProductDAO
 	public boolean addProduct(Product product)
 	{
 		try 
-		{			
+		{	
+			product.setActive(true);
 			sessionFactory.getCurrentSession().persist(product);
 			return true;
 		}

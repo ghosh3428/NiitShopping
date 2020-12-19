@@ -98,8 +98,10 @@
 								<c:if test="${product.id == 0}">
 									<br />
 									<div class="text-right">
-										<button type="button" data-toggle="modal"
-											data-target="#myCategoryModal" class="btn btn-warning btn-sm">ADD
+										<button type="button" 
+												data-toggle="modal"
+												data-target="#myCategoryModal" 
+												class="btn btn-warning btn-sm">ADD
 											CATEGORY</button>
 									</div>
 								</c:if>
@@ -176,21 +178,26 @@
 
 
 	<div class="modal fade" id="myCategoryModal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel">
+		role="dialog" >
+		
 		<div class="modal-dialog" role="document">
+		
 			<div class="modal-content">
+			
 				<div class="modal-header">
+				
 					<h4 class="modal-title" id="myModalLabel">New Category</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					
 				</div>
+				
 				<div class="modal-body">
 
 					<sf:form id="categoryForm" class="form-horizontal"
-						modelAttribute="category" action="${contextRoot}/manage/category"
+						modelAttribute="category" 
+						action="${contextRoot}/manage/category"
 						method="POST">
 
 						<div class="form-group row">

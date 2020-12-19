@@ -60,7 +60,12 @@ public class ManageProductController
 			if(operation.equals("product"))
 			{
 				mv.addObject("message", "Product submitted successfully!");
-			}	
+			}
+			
+			if(operation.equals("category"))
+			{
+				mv.addObject("message", "Category submitted successfully!");
+			}
 		}
 		return mv;
 		
@@ -75,7 +80,8 @@ public class ManageProductController
 	
 
 	@ModelAttribute("category")
-	public Category modelCategory() {
+	public Category modelCategory() 
+	{
 		return new Category();
 	}
 	
@@ -160,6 +166,17 @@ public class ManageProductController
 		mv.addObject("product", product);
 		
 		return mv;
+	}
+	
+	@RequestMapping(value = "/category", method=RequestMethod.POST)
+	public String managePostCategory(@ModelAttribute("category") Category mCategory) 
+	{					
+		
+		mCategory.setActive(true);
+		
+		categoryDAO.insert(mCategory);
+		
+		return "redirect:/manage/product?operation=category";
 	}
 	
 }
