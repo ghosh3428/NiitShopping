@@ -45,7 +45,7 @@
 
 			</div>
 
-			<div class="col-xs-12">
+			<div class="col-sm-12">
 
 
 				<table id="productTable"

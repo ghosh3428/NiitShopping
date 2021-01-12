@@ -38,7 +38,7 @@
 <link href="${bootcs}/bootstrap.min.css" rel="stylesheet">
 
 
-<link href="${customcs}/bootstrap.theme.css" rel="stylesheet">
+<link href="${customcs}/bootstrap-readable-theme.css" rel="stylesheet">
 
 <!-- Bootstrap DataTable -->
 <link href="${customcs}/dataTables.bootstrap.css" rel="stylesheet">

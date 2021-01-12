@@ -36,7 +36,8 @@ public class FrontController {
 	}
 
 	@RequestMapping(value = "/about")
-	public ModelAndView about() {
+	public ModelAndView about() 
+	{
 		ModelAndView mav = new ModelAndView("page");
 		mav.addObject("title", "About Us");
 		mav.addObject("ClickAbout", true);
@@ -90,6 +91,14 @@ public class FrontController {
 		mv.addObject("userClickSingleProduct", true);
 
 		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/register")
+	public ModelAndView register() 
+	{
+		ModelAndView mav = new ModelAndView("page");
+		return mav;
 	}
 
 }

@@ -35,7 +35,7 @@ $(function() {
 		$table
 				.DataTable({
 					lengthMenu : [ [ 3, 5, 10, -1 ],
-							[ '3 Records', '5 Records', '10 Records', 'ALL' ] ],
+							[ '3', '5', '10', 'ALL' ] ],
 					pageLength : 5,
 					ajax : {
 						url : jsonUrl,
@@ -97,7 +97,7 @@ $(function() {
 
 									return str;
 
-								}
+								}      
 							}
 
 					]
@@ -116,7 +116,7 @@ $(function() {
 				.DataTable({
 					lengthMenu : [
 							[ 10, 30, 50, -1 ],
-							[ '10 products', '30 products', '50 products',
+							[ '10', '30', '50',
 									'ALL' ] ],
 					pageLength : 30,
 					ajax : {

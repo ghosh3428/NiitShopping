@@ -1,5 +1,7 @@
 package com.niit.Backend.daoimpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -50,17 +52,65 @@ public class UserDAOimpl implements UserDAO
 	}
 
 	@Override
-	public boolean addCart(Cart cart) 
+	public boolean updateCart(Cart cart) 
 	{
 		
 		try 
 		{			
-			sessionFactory.getCurrentSession().persist(cart);			
+			sessionFactory.getCurrentSession().update(cart);			
 			return true;
 		}
 		catch(Exception ex) 
 		{
 			return false;
+		}
+	}
+	
+	@Override
+	public User getByEmail(String email) 
+	{
+		String selectQuery = "FROM User WHERE email = :email";
+		try {
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,User.class)
+						.setParameter("email",email)
+							.getSingleResult();
+		}
+		
+		catch(Exception ex) 
+		{
+			return null;
+		}
+							
+	}
+	
+	@Override
+	public List<Address> listShippingAddresses(int userId) 
+	{
+		String selectQuery = "FROM Address WHERE userId = :userId AND shipping = :isShipping ORDER BY id DESC";
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isShipping", true)
+							.getResultList();
+		
+	}
+
+	@Override
+	public Address getBillingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :userId AND billing = :isBilling";
+		try{
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isBilling", true)
+						.getSingleResult();
+		}
+		catch(Exception ex) {
+			return null;
 		}
 	}
 

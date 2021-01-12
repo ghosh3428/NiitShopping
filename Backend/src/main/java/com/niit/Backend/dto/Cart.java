@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,16 +22,7 @@ public class Cart implements Serializable {
 	private double grandTotal;
 	@Column(name = "cart_lines")
 	private int cartLines;
-	@Column(name = "user_id")
-	private int userId;
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	public int getId() 
 	{
@@ -62,12 +54,22 @@ public class Cart implements Serializable {
 		this.cartLines = cartLines;
 	}
 
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + ", userId=" + userId
-				+ "]";
+	
+	@OneToOne
+	private User user;
+	
+
+	public User getUser() 
+	{
+		return user;
 	}
 
+	public void setUser(User user) 
+	{
+		this.user = user;
+	}
+	
+	
 	
 	
 	

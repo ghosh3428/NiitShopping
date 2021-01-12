@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.NotBlank;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Address implements Serializable {
 
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -29,18 +30,7 @@ public class Address implements Serializable {
 	private boolean shipping;
 	@Column(name="is_billing")
 	private boolean billing;
-	@Column(name = "user_id")
-	private int userId;
 
-	public int getUserId() 
-	{
-		return userId;
-	}
-
-	public void setUserId(int userId) 
-	{
-		this.userId = userId;
-	}
 	public int getId() 
 	{
 		return id;
@@ -101,11 +91,14 @@ public class Address implements Serializable {
 		this.billing = billing;
 	}
 	
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", addressLineOne=" + addressLineOne + ", addressLineTwo=" + addressLineTwo
-				+ ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode=" + postalCode
-				+ ", billing=" + billing + "]";
+	@ManyToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	
