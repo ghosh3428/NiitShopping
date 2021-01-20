@@ -4,12 +4,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
+
 	<var name="user" class="com.niit.Backend.dto.User" />
 	<var name="billing" class="com.niit.Backend.dto.Address" />
+	
+	
+	<on-start>
+		<evaluate expression="RegisterHandler.init()" result="flowScope.registerModel"/>
+	</on-start>
 	
 	<!-- Flow Start State -->
 	<view-state id="personal" view="flows/register/signup-personal" model="user" >
 		<transition on="billing" to="billing" />
+	<on-exit>
+			<evaluate expression="RegisterHandler.addUser(flowScope.registerModel, user)" />			
+		</on-exit>
 	</view-state>
 	
 	
@@ -17,9 +26,13 @@
 	<view-state id="billing" view="flows/register/signup-billing"  model="billing">
 	<transition on="personal" to="personal" />
 	<transition on="confirm" to="confirm" />
+	<on-exit>
+			<evaluate expression="RegisterHandler.addBilling(flowScope.registerModel, billing)" />
+	</on-exit>
+	
 	</view-state>
 
-	<!-- Flow Billing State -->
+	<!-- Flow Confirm State -->
 	<view-state id="confirm" view="flows/register/signup-confirm" >
 	<transition on="personal" to="personal" />
 	<transition on="billing" to="billing" />
