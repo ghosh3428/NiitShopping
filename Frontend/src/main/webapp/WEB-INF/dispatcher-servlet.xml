@@ -16,6 +16,7 @@
     ">
 
 	<context:component-scan base-package="com.niit.Frontend.controller"/>
+	<context:component-scan base-package="com.niit.Frontend.Handler"/>
 	<context:component-scan base-package="com.niit.Backend"/>
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -47,6 +48,7 @@
 	
 	<wf:flow-builder-services id="flowBuilderServices"
     	view-factory-creator="viewFactoryCreator"
+    	validator ="validator"
    	/>
    	
    	<bean id="viewFactoryCreator" 
@@ -62,6 +64,9 @@
 		<property name="flowRegistry" ref="flowRegistry" />
 		<property name="order" value="-1" />
 	</bean>
+	
+	<bean id="validator" 
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/> 
 	
 	
 </beans>

@@ -77,7 +77,7 @@
 								</div>
 							</div>
 							
-							
+							<br/>
 							<div class="form-group row">
 								<div class="offset-md-4 col-md-8">
 									<button type="submit" name="_eventId_personal" class="btn btn-primary">
@@ -106,5 +106,5 @@
 		
 		
 	</div>
-<%@include file="../flows-shared/footer.jsp"%>
+
 	

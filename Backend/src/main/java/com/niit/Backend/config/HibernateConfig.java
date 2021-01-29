@@ -23,7 +23,7 @@ public class HibernateConfig {
 	private String DATABASE_URL      = "jdbc:h2:tcp://localhost/~/niit";
 	private String DATABASE_DRIVER   = "org.h2.Driver";
 	private String DATABASE_DIALECT  = "org.hibernate.dialect.H2Dialect";
-	private String DATABASE_USERNAME = "sa";
+	private String DATABASE_USERNAME = "niitstudent";
 	private String DATABASE_PASSWORD = "";
 
 	// dataSource bean will be available
@@ -69,7 +69,7 @@ public class HibernateConfig {
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
 		
-		properties.put("hibernate.hbm2ddl.auto", "create");
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		
 		
 		return properties;
