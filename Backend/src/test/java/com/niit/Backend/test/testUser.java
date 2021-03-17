@@ -168,7 +168,7 @@ private static AnnotationConfigApplicationContext context;
 		address.setCountry("India");
 		address.setPostalCode("400001");
 		address.setBilling(true);
-		address.setUser(user);
+		address.setUserId(user.getId());
 			
 		assertEquals("Failed to add the billing address!", true, userDAO.addAddress(address));
 		
@@ -181,7 +181,7 @@ private static AnnotationConfigApplicationContext context;
 		address.setCountry("India");
 		address.setPostalCode("400001");
 		address.setShipping(true);
-		address.setUser(user);
+		address.setUserId(user.getId());
 		
 		assertEquals("Failed to add the shipping address!", true, userDAO.addAddress(address));
 		

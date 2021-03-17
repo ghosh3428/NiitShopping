@@ -106,14 +106,14 @@ public class Address implements Serializable {
 		this.billing = billing;
 	}
 	
-	@ManyToOne
-	private User user;
+	@Column(name = "user_id")
+	private int userId;
 
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	

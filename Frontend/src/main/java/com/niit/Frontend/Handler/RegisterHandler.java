@@ -3,6 +3,7 @@ package com.niit.Frontend.Handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.niit.Backend.dao.UserDAO;
@@ -15,6 +16,9 @@ import com.niit.Frontend.model.RegisterModel;
 public class RegisterHandler {
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public RegisterModel init() {
 		return new RegisterModel();
@@ -28,7 +32,8 @@ public class RegisterHandler {
 		registerModel.setBilling(billing);
 	}
 
-	public String saveAll(RegisterModel registerModel) {
+	public String saveAll(RegisterModel registerModel) 
+	{
 		String transitionValue = "success";
 		User user = registerModel.getUser();
 		if (user.getRole().equals("USER")) {
@@ -36,11 +41,15 @@ public class RegisterHandler {
 			cart.setUser(user);
 			user.setCart(cart);
 		}
+		
+		//Encrypt the password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
 		// save the user
 		userDAO.addUser(user);
 		// save the billing address
 		Address billing = registerModel.getBilling();
-		billing.setUser(user);
+		billing.setUserId(user.getId());
 		billing.setBilling(true);
 		userDAO.addAddress(billing);
 		return (transitionValue);

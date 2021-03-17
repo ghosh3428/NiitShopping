@@ -18,5 +18,8 @@ public interface UserDAO
 	User getByEmail(String email) ;
 	
 	Address getBillingAddress(int userId);
+	
 	List<Address> listShippingAddresses(int userId);
+	
+	Address getAddress(int addressId);
 }
